@@ -29,8 +29,6 @@ proc XTS_AES_128_dec_expanded_key*(k2: ptr uint8; k1: ptr uint8; TW_initial: ptr
                                   N: uint64; ct: ptr uint8; pt: ptr uint8) {.cdecl,
     importc: "XTS_AES_128_dec_expanded_key", dynlib: libname.}
 
-## #include "test.h"
-## #define CACHED_TEST
 
 when defined(CACHED_TEST):
   ##  Cached test, loop many times over small dataset
@@ -120,8 +118,7 @@ proc main*(): cint {.cdecl.} =
   i = 0
   var tmpbuf = ""
   while i < TEST_LEN:
-    # var tmp = cast[cuchar](random(10))
-    var tmp = cast[cuchar]('b')
+    var tmp = cast[cuchar](random(10))
     tmpbuf = tmpbuf & tmp
     inc(i)
   pt = cast[ptr cuchar](tmpbuf)
@@ -138,7 +135,7 @@ proc main*(): cint {.cdecl.} =
     XTS_AES_128_dec(key2, key1, tinit, TEST_LEN, ct, dt)
     inc(i)
   mystatus = perf_stop(addr(stop))
-  echo "aes_xts_128_dec", TEST_TYPE_STR, ": "
+  echo "aes_xts_128_dec", TEST_TYPE_STR
   perf_print(stop, start, cast[clonglong](TEST_LEN * i))
   return 0
 
