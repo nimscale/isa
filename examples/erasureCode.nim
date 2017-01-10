@@ -1,7 +1,7 @@
 import isa
 
 
-####### TESTS FOR ERASURE coding
+####### TESTS FOR ERASURE coding https://github.com/01org/isa-l/tree/master/erasure_code
 
 ####ENCODE TEST on filesystem
 

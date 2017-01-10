@@ -1,7 +1,7 @@
 import isa
 
 
-####### TESTS FOR encryption/decryption
+####### TESTS FOR encryption/decryption (use aes https://github.com/01org/isa-l_crypto)
 
 ####enryption TEST on filesystem
 
@@ -9,12 +9,11 @@ import isa
 #is pseudocode
 path=somefileLargerThan1MB
 destpath=...
-isa.encryptFile(path,destpath)
+isa.encryptFileAES(path,destpath)
 
-#metadata is structure which has paths to parts of result
 
 #DECODE test
 
-isa.decryptFile(destpath,pathcompare)
+isa.decryptFileAES(destpath,pathcompare)
 
 #check file on pathcompare=path
