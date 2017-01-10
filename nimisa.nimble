@@ -8,7 +8,7 @@ license       = "Apache License"
 srcDir        = "src"
 binDir        = "bin"
 
-bin = "crc64_example, perftest, xts_128_dec_perf"
+bin = "crc64example, perftest, xts128decperf"
 
 [Deps]
 Requires: "nim >= 0.15.2, compiler >= 0.15.2"
