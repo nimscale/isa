@@ -8,8 +8,7 @@ license       = "Apache License"
 srcDir        = "src"
 binDir        = "bin"
 
-bin = "crc64example, perftest, xts128decperf"
+bin = "crc, encrypt, erasureCode"
 
 [Deps]
 Requires: "nim >= 0.15.2, compiler >= 0.15.2"
-
