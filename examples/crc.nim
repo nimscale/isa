@@ -1,12 +1,32 @@
-import isa
 
+import isa, parseopt, strutils
 
-####### TESTS FOR CRC use CRC32 https://github.com/01org/isa-l/tree/master/crc
+const
+  Version = "1.0.0" # keep in sync with Nimble version. D'oh!
+  Usage = """
+  Usage: crc infile
+"""
 
-#### CRC test
+proc nimmain(infile: string) =
+  isa.crc64(infile)
 
-#is pseudocode
-path=somefileLargerThan1MB
-crc=isa.crc(path)
-
-#print crc
+var
+  infile = ""
+for kind, key, val in getopt():
+  case kind
+  of cmdArgument:
+    infile = key
+  of cmdLongOption, cmdShortOption:
+    case key.normalize
+    of "help", "h":
+      stdout.write(Usage)
+      quit(0)
+    of "version", "v":
+      stdout.write(Version & "\n")
+      quit(0)
+  of cmdEnd: assert(false)
+if infile == "":
+  # no filename has been given, so we show the help:
+  stdout.write(Usage)
+else:
+  nimmain(infile)
