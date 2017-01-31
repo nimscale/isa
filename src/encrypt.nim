@@ -25,7 +25,7 @@ proc nimmain() =
     decreadlen = 0
 
 
-  srcfile = "./encrypt.nim"
+  srcfile = "./encrypt"
   encfile = "/tmp/enctest"
   decfile = "/tmp/dectest"
 
