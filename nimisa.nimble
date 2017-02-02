@@ -8,7 +8,7 @@ license       = "Apache License"
 srcDir        = "src"
 binDir        = "bin"
 
-bin = "crc, encrypt, erasureCode"
+bin = "crc, encrypt, erasureCode, compress"
 
 [Deps]
 Requires: "nim >= 0.15.2, compiler >= 0.15.2"
