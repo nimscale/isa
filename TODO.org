@@ -1,0 +1,11 @@
+- [ ] erasure coding
+- [ ] crc
+- [ ] igzip
+- [ ] raid
+
+- [ ] aes
+
+- [ ] sha1
+- [ ] md5
+- [ ] sha256
+- [ ] sha512
