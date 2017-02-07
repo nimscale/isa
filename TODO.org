@@ -1,12 +1,12 @@
-- [x] erasure coding
+- [X] erasure coding
 - [ ] crc
-- [x] igzip deflate
+- [X] igzip deflate
 - [ ] igzip inflate
 - [ ] raid
 
 - [ ] aes
 
-- [ ] sha1
-- [ ] md5
-- [ ] sha256
-- [ ] sha512
+- [X] sha1
+- [X] md5
+- [X] sha256
+- [X] sha512
