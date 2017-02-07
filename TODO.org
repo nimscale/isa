@@ -1,6 +1,7 @@
-- [ ] erasure coding
+- [x] erasure coding
 - [ ] crc
-- [ ] igzip
+- [x] igzip deflate
+- [ ] igzip inflate
 - [ ] raid
 
 - [ ] aes
