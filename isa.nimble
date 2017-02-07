@@ -7,4 +7,4 @@ author        = "nimscale"
 
 [Deps]
 Requires: "nim >= 0.15.2"
-Requires: "collections >= 0.3.0"
+Requires: "collections >= 0.3.1"
