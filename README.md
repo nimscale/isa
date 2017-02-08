@@ -30,8 +30,8 @@ It is recommended to compile with gc-sections (see `nim.cfg` for example configu
 
 ## Functionality
 
-  * Erasure codes
-  * Deflate/GZIP compression
-  * CRC
-  * AES compression
-  * Batch hash computation (MD5, SHA1, SHA256, SHA512)
+  * Erasure codes ([API docs](https://rawgit.com/nimscale/isa/master/doc/isa/erasure_code.html), [example](examples/erasure_code_example.nim))
+  * Deflate/GZIP compression ([API docs](https://rawgit.com/nimscale/isa/master/doc/isa/gzip.html), [example](examples/gzip_compress_example.nim))
+  * CRC ([API docs](https://rawgit.com/nimscale/isa/master/doc/isa/crc.html))
+  * AES compression ([API docs](https://rawgit.com/nimscale/isa/master/doc/isa/aes.html), [example](examples/aes_example.nim))
+  * Batch hash computation (MD5, SHA1, SHA256, SHA512) ([API docs](https://rawgit.com/nimscale/isa/master/doc/isa/hash.html), [example](examples/hash_example.nim))
