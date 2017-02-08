@@ -2,3 +2,4 @@ nimcache/
 /deps/asm_compiled
 examples/*_example
 *.ndb
+examples/*_bench
