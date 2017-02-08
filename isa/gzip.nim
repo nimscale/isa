@@ -4,6 +4,9 @@ type
   DeflateCompressor = ref object
     stream: isal_zstream
 
+  InflateDecompressor = ref object
+    stream: inflate_state
+
 proc newDeflateCompressor*(): DeflateCompressor =
   ## Create new Deflate compressor.
   ##
@@ -29,7 +32,7 @@ proc drain(self: DeflateCompressor): string =
     if self.stream.avail_out != 0:
       break
 
-  assert(self.stream.avail_in == 0);
+  assert(self.stream.avail_in == 0)
 
 proc compress*(self: DeflateCompressor, data: string): string =
   ## Compress data using Deflate.
@@ -46,6 +49,45 @@ proc close*(self: DeflateCompressor): string =
 
   while self.stream.internal_state.state != ZSTATE_END:
     result &= self.drain
+
+const ISAL_DECOMP_OK =  0
+const ISAL_END_INPUT =  1
+const ISAL_OUT_OVERFLOW =  2
+
+proc newInflateDecompressor*(): InflateDecompressor =
+  ## Create new Inflate decompressor.
+  let self = new(InflateDecompressor)
+  isal_inflate_init(addr self.stream)
+  # self.stream.end_of_stream = 0
+  # self.stream.flush = NO_FLUSH
+  return self
+
+proc drain(self: InflateDecompressor): string =
+  result = ""
+  var buffer = newString(4096)
+
+  while true:
+    self.stream.avail_out = buffer.len.uint32
+    self.stream.next_out = cast[ptr uint8](addr buffer[0])
+    let state = isal_inflate(addr self.stream)
+    result &= buffer[0..<buffer.len - self.stream.avail_out.int]
+
+    if state in {ISAL_END_INPUT, ISAL_DECOMP_OK}:
+      break
+
+    if state == ISAL_OUT_OVERFLOW:
+      continue
+
+    raise newException(Exception, "invalid Deflate data")
+
+  assert(self.stream.avail_in == 0);
+
+proc decompress*(self: InflateDecompressor, data: string): string =
+  ## Decompress data using Deflate.
+  self.stream.avail_in = data.len.uint32
+  self.stream.next_in = cast[ptr uint8](unsafeAddr data[0])
+
+  return self.drain
 
 when isMainModule:
   let c = newDeflateCompressor()

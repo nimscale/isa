@@ -1223,6 +1223,10 @@ function main() {
     title="compress*(self: DeflateCompressor; data: string): string"><wbr />compress<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#close,DeflateCompressor"
     title="close*(self: DeflateCompressor): string"><wbr />close<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#newInflateDecompressor,"
+    title="newInflateDecompressor*(): InflateDecompressor"><wbr />new<wbr />Inflate<wbr />Decompressor<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#decompress,InflateDecompressor,string"
+    title="decompress*(self: InflateDecompressor; data: string): string"><wbr />decompress<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1247,27 +1251,45 @@ function main() {
 <p>The compressor returns raw data without headers with window size == 32kB. The data can be decompressed, for example, by using Python's zlib.decompress(data, -15)</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/isa/gzip.nim#L7"
+href="/tree/master/isa/gzip.nim#L10"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/isa/gzip.nim#L7" class="link-seesrc" target="_blank" >Edit</a>
+<a href="/edit/devel/isa/gzip.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="compress"><a name="compress,DeflateCompressor,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">compress</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">DeflateCompressor</span><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
 Compress data using Deflate.
 &nbsp;&nbsp;<a
-href="/tree/master/isa/gzip.nim#L34"
+href="/tree/master/isa/gzip.nim#L37"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/isa/gzip.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
+<a href="/edit/devel/isa/gzip.nim#L37" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="close"><a name="close,DeflateCompressor"></a><pre><span class="Keyword">proc</span> <span class="Identifier">close</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">DeflateCompressor</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
 <dd>
 Close the stream and return remaining data.
 &nbsp;&nbsp;<a
-href="/tree/master/isa/gzip.nim#L41"
+href="/tree/master/isa/gzip.nim#L44"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/isa/gzip.nim#L41" class="link-seesrc" target="_blank" >Edit</a>
+<a href="/edit/devel/isa/gzip.nim#L44" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newInflateDecompressor"><a name="newInflateDecompressor,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newInflateDecompressor</span><span class="Operator">*</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">InflateDecompressor</span></pre></dt>
+<dd>
+Create new Inflate decompressor.
+&nbsp;&nbsp;<a
+href="/tree/master/isa/gzip.nim#L57"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/isa/gzip.nim#L57" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="decompress"><a name="decompress,InflateDecompressor,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">decompress</span><span class="Operator">*</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">InflateDecompressor</span><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
+<dd>
+Decompress data using Deflate.
+&nbsp;&nbsp;<a
+href="/tree/master/isa/gzip.nim#L85"
+class="link-seesrc" target="_blank">Source</a>
+<a href="/edit/devel/isa/gzip.nim#L85" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1280,7 +1302,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-02-08 15:45:39 UTC</small>
+        <small>Made with Nim. Generated: 2017-02-08 16:29:20 UTC</small>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 # isa
 
-nim bindings for https://github.com/01org/isa-l and https://github.com/01org/isa-l-crypt
+nim bindings for https://github.com/01org/isa-l and https://github.com/01org/isa-l_crypto
 
 ## Dependencies
 

@@ -193,6 +193,21 @@ type
     internal_state*: isal_zstate
 
   inflate_state* {.importc: "struct inflate_state", header: "igzip_lib.h".} = object
+    next_in*: ptr uint8
+    avail_in*: uint32
+
+    next_out*: ptr uint8
+    avail_out*: uint32
+
+    block_state*: isal_block_state
+
+  isal_block_state* {.size: sizeof(cint).} = enum
+    ISAL_BLOCK_NEW_HDR,
+    ISAL_BLOCK_HDR,
+    ISAL_BLOCK_TYPE0,
+    ISAL_BLOCK_CODED,
+    ISAL_BLOCK_INPUT_DONE,
+    ISAL_BLOCK_FINISH
 
 ## ****************************************************************************
 ##  Compression functions
