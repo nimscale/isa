@@ -1,9 +1,7 @@
 import isa/raid, collections, collections/views
 
-let data = allocShared0(4096)
-let dataView = ByteView(data: data, size: 96)
-let dataSrc = "0000000000000000000000000000000011111111111111111111111111111111"
-dataView.copyFrom(dataSrc.asUnsafeView)
+var data = "0000000000000000000000000000000011111111111111111111111111111111"
+let dataView = alignedStringView(data, align=32)
 
 var blocks = @[dataView.slice(0, 32).data,
                dataView.slice(32, 32).data,

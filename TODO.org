@@ -4,7 +4,7 @@
 - [ ] igzip inflate
 - [X] raid
 
-- [ ] aes
+- [X] aes
 
 - [X] sha1
 - [X] md5
