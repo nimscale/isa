@@ -8,23 +8,23 @@ type
     ## (computing several hashes at the same time is faster than doing it serially)
     mgr: MGR
 
-  Job[MGR, CTX] = CTX
-
   Sha1Pool* = HasherPool[SHA1_HASH_CTX_MGR, SHA1_HASH_CTX]
 
-  Sha1Job* = Job[SHA1_HASH_CTX_MGR, SHA1_HASH_CTX]
+  Sha1Job* = SHA1_HASH_CTX
 
   Md5Pool* = HasherPool[MD5_HASH_CTX_MGR, MD5_HASH_CTX]
 
-  Md5Job* = Job[MD5_HASH_CTX_MGR, MD5_HASH_CTX]
+  Md5Job* = MD5_HASH_CTX
 
   Sha256Pool* = HasherPool[SHA256_HASH_CTX_MGR, SHA256_HASH_CTX]
 
-  Sha256Job* = Job[SHA256_HASH_CTX_MGR, SHA256_HASH_CTX]
+  Sha256Job* = SHA256_HASH_CTX
 
   Sha512Pool* = HasherPool[SHA512_HASH_CTX_MGR, SHA512_HASH_CTX]
 
-  Sha512Job* = Job[SHA512_HASH_CTX_MGR, SHA512_HASH_CTX]
+  Sha512Job* = SHA512_HASH_CTX
+
+  Job = Md5Job | Sha1Job | Sha256Job | Sha512Job
 
 export HASH_UPDATE, HASH_FIRST, HASH_LAST, HASH_ENTIRE, HASH_CTX_FLAG
 
@@ -112,7 +112,7 @@ proc flushHash*(pool: Md5Pool): ptr Md5Job =
   return md5_ctx_mgr_flush(addr pool.mgr)
 
 
-proc submitHash*[MGR, CTX](pool: HasherPool[MGR, CTX], job: ptr Job[MGR, CTX], data: ByteView, kind: HASH_CTX_FLAG): auto =
+proc submitHash*[MGR, CTX](pool: HasherPool[MGR, CTX], job: ptr CTX, data: ByteView, kind: HASH_CTX_FLAG): auto =
   ## Submit a hashing job into a pool. If pool completes a job, return it.
   return doSubmit(addr pool.mgr, job, data.data, data.len.uint32, kind)
 
