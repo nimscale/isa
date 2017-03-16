@@ -57,6 +57,26 @@ proc encode*(self: ErasureCoder, input: seq[string]): seq[string] =
 
   self.encode(addr inputPtr[0], addr outputPtr[0], chunksize)
 
+proc pad(s: var string, k: int) =
+  for i in 0..<(k - s.len mod k):
+    s.add(char(k))
+
+proc encodeString*(s: string, totalChunks: int, maxLost: int): seq[string] =
+  ## Erasure-code single string. You will get ``totalChunks`` of chunks.
+  assert totalChunks <= 255
+  assert maxLost + 1 <= totalChunks
+  let origChunks = totalChunks - maxLost
+
+  var s = s
+  pad(s, origChunks)
+  var chunks: seq[string] = @[]
+  let sizePerChunk = s.len div origChunks
+  for i in 0..<origChunks:
+    chunks.add(s[i * sizePerChunk..<(i+1) * sizePerChunk])
+
+  chunks &= newErasureCoder(origChunks, maxLost).encode(chunks)
+  return chunks
+
 proc newDecoder*(coder: ErasureCoder, erasures: seq[int]): ErasureDecoder =
   ## Create decoder the decodes damaged blocks with numbers in ``erasures``.
   ## Caching this object may be faster than using ``ErasureCoder.decode``.
